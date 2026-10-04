@@ -50,11 +50,11 @@ jobs:
         build: ["*"]
         skip: ["pp*"]
         include:
-          # the manylinux2014 image also contains pypy3.9, and CPython 3.10-3.14
+          # the manylinux2014 image also contains pypy3.11, and CPython 3.10-3.15
           - os: ubuntu-latest
             arch: auto64
             type: manylinux2014
-            build: "pp311-manylinux* cp310-manylinux* cp311-manylinux* cp312-manylinux* cp313-manylinux* cp314-manylinux*"
+            build: "pp311-manylinux* cp310-manylinux* cp311-manylinux* cp312-manylinux* cp313-manylinux* cp314-manylinux* cp315-manylinux*"
             CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
             CIBW_MANYLINUX_I686_IMAGE: manylinux2014
 
@@ -106,7 +106,7 @@ jobs:
     - name: Build Wheels
       run: python -m cibuildwheel --output-dir wheelhouse .
       env:
-        CIBW_BUILD: "cp310-manylinux* cp311-manylinux* cp312-manylinux* cp313-manylinux* cp314-manylinux*"
+        CIBW_BUILD: "cp310-manylinux* cp311-manylinux* cp312-manylinux* cp313-manylinux* cp314-manylinux* cp315-manylinux*"
     - uses: actions/upload-artifact@v4
       with:
         path: wheelhouse/*.whl
